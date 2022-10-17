@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Routes from './pages/routes';
+import Routes from './Pages/routes';
 import GlobalStyle from './GlobalStyle';
 import {
   ApolloClient,
