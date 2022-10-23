@@ -3,7 +3,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 import { size } from "../../consts/breakpoints";
 
-export const StyledFilters = styled.div`
+export const StyledFilters = styled.section`
   display: flex;
   padding: 10px;
   margin: 20px 0;

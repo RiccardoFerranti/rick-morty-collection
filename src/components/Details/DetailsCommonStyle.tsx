@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { size } from "../../consts/breakpoints";
 
-export const StyledCardDetail = styled.article`
+export const StyledCardDetail = styled.section`
 	position: relative;
 	background: #282831;
 	color: white;
@@ -11,7 +11,7 @@ export const StyledCardDetail = styled.article`
 	margin-bottom: 10px;
 `;
 
-export const StyledDetailTitle = styled.div`
+export const StyledDetailTitle = styled.h1`
   font-size: 32px;
   text-shadow: 0px 4px 0px rgb(0 0 0);
   font-weight: 700;

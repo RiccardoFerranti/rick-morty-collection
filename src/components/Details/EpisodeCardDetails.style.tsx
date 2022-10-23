@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { size } from "../../consts/breakpoints";
 
-export const StyleCharacterEpisodeDetail= styled.div`
+export const StyleCharacterEpisodeDetail = styled.div`
 	padding: 20px;
 	
 	@media screen and (max-width: ${size.desktopS}) {

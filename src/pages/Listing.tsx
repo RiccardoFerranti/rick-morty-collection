@@ -158,7 +158,7 @@ const Listing: FC = () => {
       </StyledResults>
       {loadingImages 
         ? <Loading title='characters' /> :
-        <>
+        <section>
           <StyledCardContainer data-testid="listing-card-characters">
             {state.charactersToRender.characters.map((character: ICharacter) => (
               <StyledLink 
@@ -175,7 +175,7 @@ const Listing: FC = () => {
             totalCount={state.charactersToRender.totalCount}
             pageSize={PAGE_INTERVAL}
           />               
-        </>
+        </section>
       }
     </> 
   )

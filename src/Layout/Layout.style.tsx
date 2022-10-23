@@ -28,10 +28,9 @@ export const StyledLogo = styled.img`
 	}
 `;
 
-export const StyledLayout = styled.section`
+export const StyledLayout = styled.main`
     margin: 0 auto;
 		padding: 0px 15px 15px 15px;
-    /* background: red; */
 
 		@media screen and (min-width: ${size.desktopL}) {
 			width: 1280px;

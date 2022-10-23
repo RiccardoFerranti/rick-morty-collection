@@ -14,9 +14,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => (
     <header>
       <Link to="/"><StyledLogo src={logo} title="Rick and Morty Logo" alt="Rick and Morty" /></Link>
     </header>
-    <main>
-      <StyledLayout>{children}</StyledLayout>
-    </main>
+    <StyledLayout>{children}</StyledLayout>
   </>
 );
 

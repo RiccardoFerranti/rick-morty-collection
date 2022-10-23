@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledButtonWrapper = styled.div`
+export const StyledButtonWrapper = styled.nav`
   display: flex;
   width: 100%;
 
