@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithProvider from '../../../../testUtils';
 import Sorting from '../Sorting';
 
@@ -21,6 +21,7 @@ describe('Sorting', () => {
 
   it('should render just 2 sorting `icons` properly', () => {
     const { container } = renderView();
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
     expect(container.querySelectorAll('svg').length).toBe(2);
   });
 });

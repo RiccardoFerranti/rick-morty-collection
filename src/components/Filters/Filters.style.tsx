@@ -66,4 +66,3 @@ export const StyledResetFilterIcon = styled(TiDeleteOutline)`
   color: white;
   display: block;
 `
-

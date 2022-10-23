@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import Pagination, { IPaginationProps } from '../Pagination';
 import renderWithProvider from '../../../../testUtils';
 
-describe('Loading', () => {
+describe('Pagination', () => {
   let mockedProps: IPaginationProps;
   let lastPage: number; 
   
@@ -76,4 +76,3 @@ describe('Loading', () => {
     expect(screen.queryByText('Next')).not.toBeInTheDocument();
   });
 });
-

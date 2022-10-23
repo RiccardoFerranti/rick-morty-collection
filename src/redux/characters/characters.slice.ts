@@ -88,4 +88,3 @@ export const charactersSlice = createSlice({
 
 export const { setSearchQuery, setFilter, resetFilters, setSorting, setCurrentPage } = charactersSlice.actions;
 export default charactersSlice.reducer;
-

@@ -78,4 +78,3 @@ describe('CardCharacter', () => {
     expect(screen.getByText(`Present from ${characterEpisode[0].episode} to ${characterEpisode[characterEpisode.length - 1].episode}`)).toBeInTheDocument();
   });
 });
-

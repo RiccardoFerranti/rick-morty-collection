@@ -25,4 +25,3 @@ describe('SortingNumericField', () => {
     expect(mockedProps.onClick).toHaveBeenCalled();
   });
 });
-

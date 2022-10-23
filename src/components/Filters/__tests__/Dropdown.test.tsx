@@ -49,4 +49,3 @@ describe('Dropdown', () => {
     expect(dropdown.value).toBe(testOptions[2].value)
   });
 });
-

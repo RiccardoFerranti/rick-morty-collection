@@ -1,6 +1,5 @@
 import { filterArrayByKeyValue } from "../filtering";
 
-
 describe('filterArrayByKeyValue function', () => {
   it('should return an array containing the exact value passed', () => {
     const input = [

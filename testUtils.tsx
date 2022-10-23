@@ -106,18 +106,3 @@ const renderWithProvider = (
 };
 
 export default renderWithProvider;
-
-// const AllTheProviders: FC<{children: React.ReactNode}> = ({ children, isRouter }) => {
-//   return (
-//     <Provider store={store}>
-//       <ThemeProvider theme={Theme}>
-//         {isRouter ? withRouter(children as ReactNode[], path) : children}
-//       </ThemeProvider>
-//     </Provider>
-//   )
-// }
-
-// const customRender = (
-//   ui: ReactElement,
-//   options?: Omit<RenderOptions, 'wrapper'>,
-// ) => render(ui, {wrapper: AllTheProviders, ...options})

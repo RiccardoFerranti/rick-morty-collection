@@ -13,4 +13,3 @@ describe('CountCharacters', () => {
     expect(screen.getByText(`${mockedProps.totalCount}`).textContent).toBe(mockedProps.totalCount?.toString());
   });
 });
-

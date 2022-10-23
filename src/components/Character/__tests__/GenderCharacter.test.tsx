@@ -43,4 +43,3 @@ describe('GenderCharacter', () => {
     expect(screen.getByTestId(`gender-icon-${mockedProps.gender}`)).toBeInTheDocument();
   });
 });
-

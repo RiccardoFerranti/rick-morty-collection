@@ -1,4 +1,3 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
 import { size } from '../../consts/breakpoints';

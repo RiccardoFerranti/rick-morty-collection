@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { capitalize } from 'lodash';
 import renderWithProvider from '../../../../testUtils';
 import { filterKeys, genderOptions, specieOptions, statusOptions } from '../../../consts/filters';
@@ -44,4 +44,3 @@ describe('Filters', () => {
     expect(specieDropdown.value).toBe(specieOptions[2].value)
   });
 });
-

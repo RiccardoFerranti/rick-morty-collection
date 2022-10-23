@@ -45,7 +45,7 @@ const mockQueryResultError = [
   }
 ]
 
-describe('EpisodeCardDetails', () => {
+describe('LocationCardDetails', () => {
   let mockedProps: ICardLocationDetailsProps;
   let mockedStore: ICharactersState;
   const mockedLocation = { path: '/' }

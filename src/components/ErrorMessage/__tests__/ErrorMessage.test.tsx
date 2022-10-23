@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { ApolloError } from '@apollo/client';
+
 import ErrorMessage from '../ErrorMessage';
+import { TError } from '../model';
 
 describe('ErrorMessage', () => {
-  const mockedProps: Partial<ApolloError> = {
+  const mockedProps: TError = {
     message: 'test error',
   };
 
-  const renderView = (props: Partial<ApolloError> = mockedProps) => render(<ErrorMessage error={props} />);
+  const renderView = (props: TError = mockedProps) => render(<ErrorMessage error={props} />);
 
   it('should render the `error` message properly', () => {
     renderView();
     expect(screen.getByText(`${mockedProps.message}`)).toBeInTheDocument();
   });
 });
-

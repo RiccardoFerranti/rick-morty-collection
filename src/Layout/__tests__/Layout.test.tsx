@@ -17,4 +17,3 @@ describe('Layout', () => {
     expect(screen.getByText('test')).toBeInTheDocument();
   });
 });
-

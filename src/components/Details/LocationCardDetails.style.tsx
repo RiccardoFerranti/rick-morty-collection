@@ -9,4 +9,3 @@ export const StyleCharacterLocationDetail = styled.div`
 		display: block;
   }
 `
-

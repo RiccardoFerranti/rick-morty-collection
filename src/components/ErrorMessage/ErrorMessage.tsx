@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { ApolloError } from '@apollo/client/errors';
 
 import { StyleErrorContainer } from './ErrorMessage.styled';
+import { TError } from './model';
 
 export interface IErrorMessageProps {
-  error?: ApolloError,
+  error?: TError,
 }
 
 const ErrorMessage: FC<IErrorMessageProps> = ({ error }) => (

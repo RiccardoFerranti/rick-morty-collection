@@ -10,7 +10,7 @@ import
     setCurrentPage
   } from '../characters.slice';
 
-describe('Games Selectors', () => {  
+describe('Characters state', () => {  
   let initialState: ICharactersState;
 
   beforeEach(() => {

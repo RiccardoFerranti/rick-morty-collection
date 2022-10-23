@@ -23,7 +23,7 @@ describe('Search', () => {
 
   it('should render the clear icon', () => {
     const { container } = renderView();
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });
-

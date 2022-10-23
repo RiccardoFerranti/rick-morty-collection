@@ -99,5 +99,4 @@ export const StyledLoadingText = styled.span`
   @media screen and (max-width: ${size.tablet}) {
     font-size: 18px;
 	}
-
 `

@@ -21,4 +21,3 @@ const Layout: FC<ILayoutProps> = ({ children }) => (
 );
 
 export default Layout;
-

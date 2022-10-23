@@ -5,9 +5,9 @@ import renderWithProvider, { generateMockedState } from '../../../../testUtils';
 import { LOAD_CHARACTER_BY_ID } from '../../../GraphQL/Queries';
 import { ICharactersState } from '../../../redux/characters/characters.slice';
 
-import CardCharactedDetails,{
+import CardCharacterDetails,{
   CardCharacterOriginDetails,
-  ICardCharactedDetailsProps,
+  ICardCharacterDetailsProps,
   ICardCharacterOriginDetailsProps,
 } from '../CharacterCardDetails';
 
@@ -37,18 +37,18 @@ const mockQueryResultError = [
 
 type TMockQueryResult = typeof mockQueryResultSuccess | typeof mockQueryResultError
 
-describe('CardCharactedDetails', () => {
-  let mockedProps: ICardCharactedDetailsProps;
+describe('CharacterCardDetails', () => {
+  let mockedProps: ICardCharacterDetailsProps;
   let mockedStore: ICharactersState;
   const mockedLocation = { path: '/' }
 
   const renderView = (
-    props: ICardCharactedDetailsProps = mockedProps,
+    props: ICardCharacterDetailsProps = mockedProps,
     location = mockedLocation,
     store: ICharactersState = mockedStore,
     mockQueryResult: TMockQueryResult = mockQueryResultSuccess
   ) => renderWithProvider(
-    <CardCharactedDetails {...props} />,
+    <CardCharacterDetails {...props} />,
     { isRouter: true, location },
     {
       preloadedState: {
@@ -178,4 +178,3 @@ describe('CardCharacterOriginDetails', () => {
     expect(screen.getByText(`${mockedProps.character.origin.dimension}`)).toBeInTheDocument();
   });
 });
-

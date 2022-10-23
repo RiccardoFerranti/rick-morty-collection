@@ -25,4 +25,3 @@ describe('SortingAlphabeticalField', () => {
     expect(mockedProps.onClick).toHaveBeenCalled();
   });
 });
-

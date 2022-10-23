@@ -65,11 +65,11 @@ export const CardCharacterOriginDetails: FC<ICardCharacterOriginDetailsProps> = 
   return <StyledText>The origin is {character.origin?.name}</StyledText>;
 }
 
-export interface ICardCharactedDetailsProps {
+export interface ICardCharacterDetailsProps {
   id: number
 }
 
-const CardCharactedDetails: FC<ICardCharactedDetailsProps> = ({ id }) => {
+const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
   const [character, setCharacter] = useState<ICharacter | undefined>(undefined);
   const [selectedItemToFetch, setSelectedItemToFetch] = useState<
     { params: { name: string | null, id: string | null },
@@ -164,4 +164,4 @@ const CardCharactedDetails: FC<ICardCharactedDetailsProps> = ({ id }) => {
   );
 };
 
-export default memo(CardCharactedDetails);
+export default memo(CardCharacterDetails);

@@ -3,13 +3,10 @@ import { screen } from '@testing-library/react';
 import NotFound from '../NotFound';
 import renderWithProvider from '../../../testUtils';
 
-describe('NotFound', () => {  
+describe('NotFound', () => {
   const renderView = () => renderWithProvider(
     <NotFound />,
-    {
-      isRouter: true,
-      path: '/',
-    }
+    { isRouter: true, location: { path: '/' } },
   );
 
   it('should render the `404` properly', () => {
@@ -29,4 +26,3 @@ describe('NotFound', () => {
     expect(screen.getByText('BACK')).toBeInTheDocument();
   });
 });
-
