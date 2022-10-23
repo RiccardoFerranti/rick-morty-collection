@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyledCardDetail = styled.article`
 	position: relative;

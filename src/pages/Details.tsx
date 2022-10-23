@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { useLocation, useNavigate} from 'react-router-dom';
-import { IoMdArrowBack } from 'react-icons/io';
 
-import { StyledBackButton, StyledButtonWrapper } from './Detail.style';
+import { useLocation, useNavigate} from 'react-router-dom';
+
+import { StyledBackButton, StyledButtonWrapper } from './Details.style';
 
 import CardCharactedDetails from '../components/Details/CharacterCardDetails';
 import CardEpisodeDetails from '../components/Details/EpisodeCardDetails';
 import CardLocationDetails from '../components/Details/LocationCardDetails';
-import Layout from '../Layout/Layout';
+import BackButton from '../components/Buttons/BackButton';
 
-const Detail: FC = () => {
+const Details: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -28,29 +28,21 @@ const Detail: FC = () => {
   }
 
   return (
-    <Layout>
+    <>
       <StyledButtonWrapper>
+        <BackButton />
         <StyledBackButton 
           type='button'
-          id='list-character-button'
-          onClick={() => navigate(-1)}
-          data-testid='list-character-butto'
-        >
-          <IoMdArrowBack />
-          <span>BACK</span>
-        </StyledBackButton>
-        <StyledBackButton 
-          type='button'
-          id='list-character-button'
+          id='details-list-characters-button'
           onClick={() => navigate('/')}
-          data-testid='list-character-butto'
+          data-testid='details-list-characters-button'
         >
           <span>BACK TO CHARACTERS LIST</span>
         </StyledBackButton>
       </StyledButtonWrapper>
-      {DetailComponent ? <DetailComponent props={state} /> : null}
-    </Layout>
+      <>{DetailComponent ? <DetailComponent id={state} /> : null}</>
+    </>
   )
 }
 
-export default Detail;
+export default Details;

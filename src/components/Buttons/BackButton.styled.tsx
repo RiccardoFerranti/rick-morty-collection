@@ -1,15 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { size } from '../const/breakpoints';
-
-export const StyledButtonWrapper = styled.div`
-  display: flex;
-  width: 100%;
-
-  & button:last-child {
-    margin-left: auto;
-  }
-`;
 
 export const StyledBackButton = styled.button`
 	color: white;

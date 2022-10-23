@@ -9,6 +9,7 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { BASE_URL } from './consts/general';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -21,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const link = from([
   errorLink,
-  new HttpLink({ uri: "https://rickandmortyapi.com/graphql" }),
+  new HttpLink({ uri: BASE_URL }),
 ]);
 
 const client = new ApolloClient({

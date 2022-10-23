@@ -1,3 +1,5 @@
+export const filterKeys = ['status', 'gender', 'specie'];
+
 export const genderOptions = [
   { label: 'None', value: '' },
   { label: 'Female', value: 'female' },

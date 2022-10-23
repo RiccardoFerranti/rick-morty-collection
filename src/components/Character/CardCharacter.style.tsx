@@ -1,5 +1,7 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
-import { size } from '../../const/breakpoints';
+
+import { size } from '../../consts/breakpoints';
 
 interface IStyledCharacterImage {
   realSize: boolean,
@@ -8,14 +10,15 @@ interface IStyledCharacterImage {
 export const StyledCharacterImage = styled.img<IStyledCharacterImage>`
   width: ${({ realSize }) => realSize ? '300px' : '150px'};
   height: ${({ realSize }) => realSize ? '300px' : '150px'};
-  border-radius: ${({ realSize }) => realSize ? '300px' : '150px'};
+  border-radius: ${({ realSize }) => realSize ? '150px' : '75px'};
   margin-right: 20px;
   box-shadow: 5px 5px 1px black;
+	z-index: 2;
 
   @media screen and (max-width: ${size.tablet}) {
-      width: 150px;
-      height: 150px;
-      border-radius: 150px;
+		width: 150px;
+		height: 150px;
+		border-radius: 75px;
   }
 `
 
@@ -51,6 +54,8 @@ export const StyledCharacterTitle = styled.p`
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
 	color: white;
+	display: flex;
+  align-items: center;
 `;
 
 export const StyleCardText = styled.p`

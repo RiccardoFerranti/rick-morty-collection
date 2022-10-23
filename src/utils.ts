@@ -1,24 +1,14 @@
+import { TDictionary } from "./commonTypes";
 
-export const searchArrayByKeyValue = (array: any, key: string, value: string) => {
-  return array.filter((obj: any) => obj[key].toLowerCase().trim().includes(value.toLowerCase().trim()));
+export const cacheImages = async (srcImages: Array<TDictionary>) => {
+  const promises = await srcImages.map((obj) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = obj.image;
+      img.addEventListener('load', resolve);
+      img.addEventListener('error', reject);
+    })
+  });
+
+  return await Promise.allSettled(promises);
 }
-
-export const filterArrayByKeyValue = (array: any, key: string, value: string) => {
-  return array.filter((obj: any) => obj[key].toLowerCase().trim() === value.toLowerCase().trim());
-}
-
-export const sortArrayNumericallyByKeyValue = (array: any, sorting: string, key: string) => (
-  sorting === 'ASC'
-    // sort by String property ASCENDING (A - Z)
-    ? array.sort((a: any, b: any) => a.id - b.id)
-    // sort by String property DESCENDING (Z - A)
-    : array.sort((a: any, b: any) => b.id - a.id)
-)
-
-export const sortArrayAlphabeticallyByKeyValue = (array: any, sorting: string, key: string) => (
-  sorting === 'ASC'
-    // sort by String property ASCENDING (A - Z)
-    ? array.sort((a: any, b: any) => a[key] > b[key] ? 1 : -1)
-    // sort by String property DESCENDING (Z - A)
-    : array.sort((a: any, b: any) => a[key] > b[key] ? -1 : 1)
-)

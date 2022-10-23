@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyleCharacterEpisodeDetail= styled.div`
 	padding: 20px;
@@ -59,23 +60,4 @@ export const StyledTextDate = styled.div`
 		width: 100%;
 		text-align: left;
   }
-`
-
-export const StyledEpisodeDetailImage = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 80px;
-	display: block;
-	margin: 5px auto 0;
-
-	/* @media screen and (min-width: ${size.tablet}) and (max-width: ${size.desktopS}) {
-		margin: 0 auto;
-	}
-
-	@media screen and (max-width: ${size.tablet}) {
-		width: 150px;
-		height: 150px;
-		border-radius: 150px;
-		margin: 0 auto;
-  } */
 `

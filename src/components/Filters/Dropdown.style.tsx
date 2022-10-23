@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyledDropdown = styled.div`
   margin: 0 10px 0 0; 

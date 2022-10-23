@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TiDeleteOutline } from 'react-icons/ti'
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyledSearchField = styled.div`
   position: relative;

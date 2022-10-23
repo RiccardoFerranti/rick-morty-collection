@@ -1,3 +1,3 @@
 export interface IStyledIconSorting {
-  active: boolean,
+  $active: boolean,
 }

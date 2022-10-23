@@ -1,8 +1,6 @@
 import { FC } from 'react';
-import { StyleDotsAnimation, StyleLoadingContainer } from './Loading.style';
 
-// it's used for animation
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { StyledLoadingText, StyleDotsAnimation, StyleLoadingContainer } from './Loading.style';
 
 export interface ILoadingProps {
   title: string,
@@ -10,7 +8,7 @@ export interface ILoadingProps {
 
 const Loading: FC<ILoadingProps> = ({ title }) => (
   <StyleLoadingContainer>
-    <p>{`Loading ${title}`}</p>
+    <StyledLoadingText>{`Loading ${title}`}</StyledLoadingText>
     <StyleDotsAnimation />
   </StyleLoadingContainer>
 );

@@ -1,9 +1,10 @@
 {
-  "name": "technical-challenge",
-  "version": "0.1.0",
+  "name": "rick-morty-collection",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.0",
+    "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,11 +13,17 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "graphql": "^16.6.0",
+    "lodash": "^4.17.21",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-lazy-load-image-component": "^1.5.5",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
@@ -47,10 +54,15 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.186",
+    "@types/react-lazy-load-image-component": "^1.5.2",
+    "@types/react-redux": "^7.1.24",
+    "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.26",
     "eslint-config-prettier": "^8.5.0",
+    "jest-watch-typeahead": "0.6.5",
     "prettier": "^2.7.1",
-    "react-router-dom": "^6.4.2",
+    "redux-logger": "^3.0.6",
     "use-deep-compare-effect": "^1.8.1"
   }
 }

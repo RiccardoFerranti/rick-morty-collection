@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 export const DOTS = '...';
 
-const range = (start: number, end: number): number[] => {
+export const range = (start: number, end: number): number[] => {
   let length = end - start + 1;
   /*
   	Create an array of certain length and set the elements within it from
@@ -11,21 +11,20 @@ const range = (start: number, end: number): number[] => {
   return Array.from({ length }, (_, idx) => idx + start);
 };
 
-interface IUsePagination {
+export interface IUsePaginationProps {
   totalCount: number;
   pageSize: number;
   siblingCount: number;
   currentPage: number;
 }
 
-const usePagination = (props: IUsePagination) => {
+const usePagination = (props: IUsePaginationProps) => {
   const { totalCount, pageSize, siblingCount, currentPage } = props;
 
   const paginationRange = useMemo(() => {
     // Total pages to render
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     // The total page numbers is given by siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = siblingCount + 5;
 

@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyleLoadingContainer = styled.div`
   display: flex;
   align-items: baseline;
   position: absolute;
+  top: 500px;
   left: 50%;
   transform: translate(-50%);
-  margin-top: 100px;
 
   p {
     position: relative;
@@ -27,6 +28,13 @@ export const StyleDotsAnimation = styled.div`
   animation-delay: .5s;
   margin-left: 20px;
 
+  @media screen and (max-width: ${size.mobile}) {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    margin-left: 15px;
+	}
+
   &::before, &::after {
     content: '';
     display: inline-block;
@@ -43,6 +51,13 @@ export const StyleDotsAnimation = styled.div`
     color: white;
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 0s;
+
+    @media screen and (max-width: ${size.mobile}) {
+      width: 4px;
+      height: 4px;
+      border-radius: 2px;
+      left: -10px;
+    }
   }
 
   &::after {
@@ -54,6 +69,13 @@ export const StyleDotsAnimation = styled.div`
     color: #d3d3d3;
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 1s;
+
+    @media screen and (max-width: ${size.mobile}) {
+      width: 4px;
+      height: 4px;
+      border-radius: 2px;
+      left: 10px;
+    }
   }
 
   @keyframes dotFlashing {
@@ -65,4 +87,17 @@ export const StyleDotsAnimation = styled.div`
       background-color: #bcbcbc;
     }
   }
+`
+
+export const StyledLoadingText = styled.span`
+  font-size: 26px;
+
+  @media screen and (min-width: ${size.tablet}) and (max-width: ${size.desktopS}) {
+    font-size: 22px;
+	}
+
+  @media screen and (max-width: ${size.tablet}) {
+    font-size: 18px;
+	}
+
 `

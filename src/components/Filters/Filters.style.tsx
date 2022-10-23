@@ -1,6 +1,7 @@
-import { TiDeleteOutline } from "react-icons/ti";
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+import { TiDeleteOutline } from "react-icons/ti";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyledFilters = styled.div`
   display: flex;

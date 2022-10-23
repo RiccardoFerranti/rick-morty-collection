@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineSortAscending, AiOutlineSortDescending} from 'react-icons/ai';
+
 import { IStyledIconSorting } from "./model";
 
 export const StyledSortingAlphabeticalField = styled.div`
@@ -11,11 +12,11 @@ export const StyledSortingAlphabeticalField = styled.div`
 `;
 
 export const StyledIconSortingAscending = styled(AiOutlineSortAscending)<IStyledIconSorting>`
-  color: ${({ active }) => active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? '#BCFE92' : 'white'};
   font-size: 24px;
 `
 
 export const StyledIconSortingDescending = styled(AiOutlineSortDescending)<IStyledIconSorting>`
-  color: ${({ active }) => active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? '#BCFE92' : 'white'};
   font-size: 24px;
 `

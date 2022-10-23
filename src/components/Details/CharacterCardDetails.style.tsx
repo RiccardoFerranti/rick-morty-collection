@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
 import { StyleTextHighlight } from "../CommonStyle.style";
+import { size } from "../../consts/breakpoints";
 
 export const StyleCharacterCardContainer = styled.div`
 	display: flex;

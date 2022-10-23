@@ -1,40 +1,58 @@
-import { useQuery } from '@apollo/client';
 import { FC, memo, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { useQuery } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import { StyledText } from './CharacterCardDetails.style';
-import { StyleCharacterEpisodeDetail, StyledCharactersList, StyledEpisodeDetailImage, StyledTextDate } from './EpisodeCardDetails.style';
 import { StyledDetailTitle, StyledCardDetail, StyledTitle } from './DetailsCommonStyle';
+import { StyleCharacterEpisodeDetail, StyledTextDate } from './EpisodeCardDetails.style';
+import CharactersListDetails from './CharactersListDetails';
+
+import Loading from '../Loading/Loading';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import { LOAD_EPISODE_BY_ID } from '../../GraphQL/Queries';
-import Loading from '../Loading/Loading';
+import cacheImages from '../../helpers/cacheImages';
+import { IEpisodeGraphQL, IResident } from '../../models';
 
-interface ICardEpisodeDetailsProps {
-  props: number
+type TEpisode = IEpisodeGraphQL & {
+  air_date: string,
+  characters: IResident[]
+}
+export interface IEpisodeCardDetailsProps {
+  id: number
 }
 
-const CardEpisodeDetails: FC<ICardEpisodeDetailsProps> = ({ props }) => {
-  console.log(props)
-
-  const [episode, setEpisode] = useState<any>(undefined);
+const EpisodeCardDetails: FC<IEpisodeCardDetailsProps> = ({ id }) => {
+  const [episode, setEpisode] = useState<TEpisode | undefined>(undefined);
+  const [loadingImages, setLoadingImages] = useState(false);
   const [selectedRecordToFetch, setSelectedRecordToFetch] = useState<{name: string | null, id: string | null}>({
     name: null,
     id: null
   });
 
   const navigate = useNavigate();
-
+  
   const { error, loading, data } = useQuery(LOAD_EPISODE_BY_ID, {
-    variables: { id: props },
+    variables: { id },
   });
 
-  const episodeFetched = data?.episodesByIds?.[0];
+  const episodeFetched = data?.episodesByIds?.[0] || {};
 
-  useEffect(() => {
-    if (!error && episodeFetched) {
+  useDeepCompareEffect(() => {
+    if (!error && Object.values(episodeFetched).length) {
       setEpisode(episodeFetched);
+
+      const preloadImages = async () => {
+        setLoadingImages(true);
+        await cacheImages(episodeFetched?.characters);
+        setLoadingImages(false);
+      }
+      preloadImages();
     }
   }, [episodeFetched, error]);
+
 
   useEffect(() => {
     if (selectedRecordToFetch.name && selectedRecordToFetch.id) {
@@ -42,29 +60,32 @@ const CardEpisodeDetails: FC<ICardEpisodeDetailsProps> = ({ props }) => {
     }
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 
+  if (loading) {
+    return <Loading title='episode details' />
+  }
+  
+  if (error) {
+    return <ErrorMessage error={error} />
+  }
+
   return (
     <StyledCardDetail>
-      {loading && <Loading title='episode details' />}
-      {error && <p>error</p>}
-      {!error && episode ? <>
+      {episode ? <>
         <StyledDetailTitle>
           <StyledTitle>{episode.episode} - {episode.name}</StyledTitle>
           <StyledTextDate>{episode.air_date}</StyledTextDate>
         </StyledDetailTitle>
         <StyleCharacterEpisodeDetail>
           <StyledText>List of characters who have been seen in the episode:</StyledText>
-          <StyledCharactersList>
-            {episode?.characters.map(({ id, image, name }: { id: string, image: string, name: string }) => (
-              <li  key={`${name}-${id}`} onClick={() => setSelectedRecordToFetch({ name, id })}>
-                <StyledEpisodeDetailImage src={image} />
-                <p>{name}</p>
-              </li>
-            ))}
-          </StyledCharactersList>
+          <CharactersListDetails 
+            characters={episode?.characters}
+            handleSetSelectedRecordToFetch={setSelectedRecordToFetch}
+            loadingImages={loadingImages}
+          />
         </StyleCharacterEpisodeDetail>
       </> : null}
     </StyledCardDetail>
   );
 };
 
-export default memo(CardEpisodeDetails);
+export default memo(EpisodeCardDetails);

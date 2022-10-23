@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { size } from '../const/breakpoints';
+
+import { size } from '../consts/breakpoints';
 
 export const StyledLogo = styled.img`
 	margin: 0 auto;
@@ -17,8 +18,13 @@ export const StyledLogo = styled.img`
 		width: 600px;
 	}
 
-	@media screen and (max-width: ${size.tablet}) {
+	@media screen and (min-width: ${size.mobile}) and (max-width: ${size.tablet}) {
 		width: 400px;
+	}
+
+	@media screen and (max-width: ${size.mobile}) {
+		width: 100%;
+    max-height: 180px;
 	}
 `;
 
