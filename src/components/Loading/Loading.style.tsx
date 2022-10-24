@@ -18,7 +18,7 @@ export const StyleLoadingContainer = styled.div`
   }
 
   @media screen and (max-width: ${size.mobile}) {
-    top: 450px;
+    top: 300px;
 	}
 `
 export const StyleDotsAnimation = styled.div`
