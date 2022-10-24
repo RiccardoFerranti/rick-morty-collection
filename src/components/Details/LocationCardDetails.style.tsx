@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyleCharacterLocationDetail = styled.div`
 	padding: 20px;
@@ -8,4 +9,3 @@ export const StyleCharacterLocationDetail = styled.div`
 		display: block;
   }
 `
-

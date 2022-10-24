@@ -57,7 +57,7 @@ export const StyledPageNumber = styled.li<IStyledPageNumber>`
 `;
 
 export const StyledPageText =  styled.li`
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   width: 25px;
   height: 25px;
   border-radius: 20px;
@@ -67,7 +67,7 @@ export const StyledPageText =  styled.li`
 `
 
 export const StyledPageDots = styled.li<IStyledPageNumber>`
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   width: 25px;
   height: 25px;
   text-align: center;

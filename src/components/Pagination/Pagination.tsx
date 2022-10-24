@@ -1,66 +1,57 @@
-import { FC, useMemo } from "react";
+import { FC, memo } from "react";
+import { setCurrentPage } from "../../redux/characters/characters.slice";
+import { useAppDispatch } from "../../redux/store";
 import { StyledPageDots, StyledPageNumber, StyledPagesContainer, StyledPageText } from "./Pagination.style";
-// import { StyledPage, StyledPagesContainer, StyledPagination, StyledPaginationButton } from "./Pagination.style";
 import usePagination, { DOTS } from './usePagination';
 
-interface IPaginationProps {
-  count: number,
+export interface IPaginationProps {
+  totalCount: number,
+  siblingCount?: number,
+  currentPage: number,
+  pageSize: number,
 }
 
+const Pagination: FC<IPaginationProps> = props => {
+  const { totalCount, siblingCount = 1, currentPage, pageSize } = props;
 
-const Pagination: FC<any> = props => {
-  const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-  } = props;
-
-
-  // console.log('currentPage', currentPage)
-  // console.log('totalCount', totalCount)
-  // console.log('siblingCount', siblingCount)
-  // console.log('pageSize', pageSize)
-
+  const dispatch = useAppDispatch();
+  
   const paginationRange = usePagination({
     currentPage,
     totalCount,
     siblingCount,
     pageSize
   });
-
+  
   // If there are less than 2 times in pagination range we shall not render the component
   if (!paginationRange?.length || paginationRange.length === 1) return null;
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    dispatch(setCurrentPage({ currentPage: currentPage + 1 }));
   };
 
   const onPrev = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1);
+    if (currentPage > 1) dispatch(setCurrentPage({ currentPage: currentPage - 1 }))
   };
 
   let lastPage = paginationRange?.[paginationRange.length - 1];
 
   return (
     <StyledPagesContainer>
-      {currentPage !== 1 ? 
-        <StyledPageText onClick={onPrev}>Prev</StyledPageText>
-      : null}
-      {paginationRange?.map((pageNumber: number | string) => {
+      {currentPage !== 1 ? <StyledPageText onClick={onPrev}>Prev</StyledPageText> : null}
+      {paginationRange?.map((pageNumber: number | string, index: number) => {
          
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
-          return <StyledPageDots>&#8230;</StyledPageDots>;
+          return <StyledPageDots key={`dots-${index}`}>&#8230;</StyledPageDots>;
         }
 		
-        // Render our Page Pills
-        // console.log(pageNumber === currentPage)
+        // Render page numbers
         return (
           <StyledPageNumber
+            key={pageNumber}
             selected={pageNumber === currentPage}
-            onClick={() => onPageChange(pageNumber)}
+            onClick={() => dispatch(setCurrentPage({ currentPage: +pageNumber }))}
           >
             {pageNumber}
           </StyledPageNumber>
@@ -73,4 +64,4 @@ const Pagination: FC<any> = props => {
   );
 };
 
-export default Pagination
+export default memo(Pagination);

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+
+import { size } from "../../consts/breakpoints";
 
 export const StyledDropdown = styled.div`
   margin: 0 10px 0 0; 
@@ -32,9 +33,9 @@ export const StyledSelect = styled.select`
   width: 110px;
   height: 30px;
   border-radius: 6px;
-  background: #282831;
+  background: ${({ theme }) => theme.colors.cardBackground};
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid grey;
 
   @media screen and (max-width: ${size.mobile}) {

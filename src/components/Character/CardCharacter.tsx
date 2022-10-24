@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { 
   StyledCard,
@@ -7,24 +8,30 @@ import {
   StyleCardContainer,
   StyleCardText,
   StyleCardSeparator,
-  StyledCharacterImage
+  StyledCharacterImage,
 } from "./CardCharacter.style";
+import GenderCharacter from './GenderCharacter';
 
 import { StyleTextHighlight } from '../CommonStyle.style';
-import { ICharacter } from '../../model';
 
-interface ICardCharacterProps {
+import { ICharacter } from '../../models';
+import characterPlaceholder from "../../images/character-placeholder.jpeg";
+
+export interface ICardCharacterProps {
   character: ICharacter
 }
 
-const CardCharacter: FC<any> = ({ character }) => {
-  const { id, name, image, species, status, episode } = character;
+const CardCharacter: FC<ICardCharacterProps> = ({ character }) => {
+  const { id, name, image, species, status, episode, gender } = character;
 
   return (
-    <StyledCard>
-      <StyledCharacterTitle><span>#{id}</span> - {name}</StyledCharacterTitle>
+    <StyledCard data-testid={`card-character-${name.toLowerCase().replaceAll(' ', '-')}`}>
+      <StyledCharacterTitle data-testid="card-character-title">
+        <span><span>#{id}</span> - {name}</span>
+        <GenderCharacter gender={gender} />
+      </StyledCharacterTitle>
       <StyleCardContainer>
-        <StyledCharacterImage src={image} realSize={false} />
+        <StyledCharacterImage src={image || characterPlaceholder} realSize={false} title={name} alt={`${name} image`} />
         <StyleCardTextContainer>
           <StyleCardText> 
             <StyleTextHighlight>{species}</StyleTextHighlight>
@@ -37,7 +44,6 @@ const CardCharacter: FC<any> = ({ character }) => {
           {(episode.length > 1) 
             ? <>
                 <StyleCardText>{`Present from ${episode[0].episode} to ${episode[episode.length - 1].episode}`}</StyleCardText>
-
               </>
             : <StyleCardText>{`Present just in ${episode[0].episode}`}</StyleCardText>
           }

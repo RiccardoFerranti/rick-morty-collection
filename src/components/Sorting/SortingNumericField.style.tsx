@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsSortNumericUp, BsSortNumericDown} from 'react-icons/bs';
+
 import { IStyledIconSorting } from "./model";
 
 export const StyledSortingNumericField = styled.div`
@@ -11,11 +12,11 @@ export const StyledSortingNumericField = styled.div`
 `;
 
 export const StyledIconSortingNumberAscending = styled(BsSortNumericDown)<IStyledIconSorting>`
-  color: ${({ active }) => active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `
 
 export const StyledIconSortingNumberDescending = styled(BsSortNumericUp)<IStyledIconSorting>`
-  color: ${({ active }) => active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `

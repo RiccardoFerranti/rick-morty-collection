@@ -40,41 +40,6 @@ export const LOAD_ALL_CHARACTERS = gql`
   }
 `
 
-export const LOAD_CHARACTERS = gql`
-  query Characters($page: Int!, $characterName: String, $characterStatus: String, $characterGender: String) {
-    characters(page: $page, filter: { name: $characterName, status: $characterStatus, gender: $characterGender }) {
-      results {
-        id
-        name
-        species
-        gender
-        type
-        image
-        status
-        origin {
-          id
-          name
-          type
-          dimension
-          residents {
-            id
-            name
-            image
-          }
-        }
-        episode {
-          id
-          episode
-          name
-        }
-      }
-      info {
-        count
-      }
-    }
-  }
-`
-
 export const LOAD_EPISODE_BY_ID = gql`
   query($id: ID!) {
     episodesByIds(ids: [$id]) {

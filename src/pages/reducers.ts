@@ -1,82 +1,47 @@
-export const SET_FILTER = 'SET_FILTER';
-export const RESET_FILTER = 'RESET_FILTER';
-export const SET_SORTING = 'SET_SORTING';
+import { cloneDeep } from "lodash";
+import { TDictionary } from "../commonTypes";
+import { ICharacter } from "../models";
 
-interface IFilterInitialState {
-  status: string,
-  gender: string,
-  specie: string
-}
+export const SET_ALL_CHARACTERS = 'SET_ALL_CHARACTERS';
+export const SET_CHARACTERS_TO_RENDER = 'SET_CHARACTERS_TO_RENDER';
 
-export const filterInitialState: IFilterInitialState = {
-  status: '',
-  gender: '',
-  specie: ''
-};
-
-export function filterReducer(state: IFilterInitialState, action: any): IFilterInitialState {
-  switch (action.type) {
-    case "SET_FILTER":
-      return {
-        ...state,
-        [action.key]: action.value
-      };
-
-    case "RESET_FILTER":
-      return {
-        ...state,
-        status: '',
-        gender: '',
-        specie: ''
-      };
-
-    default:
-      return state;
+interface ICharactersInitialState {
+  allCharacters: ICharacter[],
+  charactersToRender: {
+    characters: ICharacter[],
+    totalCount: number
   }
 }
 
-export const sortingInitialState = {
-  id: {
-    sort: 'ASC',
-    name: 'id',
-    active: true,
-  },
-  name: {
-    sort: 'ASC',
-    name: 'name',
-    active: false
-  },
+export const charactersInitialState: ICharactersInitialState = {
+  allCharacters: [],
+  charactersToRender: {
+    characters: [],
+    totalCount: 0
+  }
 };
 
-export function sortingReducer(state: any, action: any) {
-  console.log(action)
+export function charactersReducer(state: ICharactersInitialState, action: TDictionary): ICharactersInitialState {
   switch (action.type) {
-    case "SET_SORTING": {
-      const newState = JSON.parse(JSON.stringify(state));
-      // console.log(state)
-      // set all active sorting to false
-      Object.keys(newState).forEach((key) => { newState[key].active = false });
-
-      // console.log(newState)
-      console.log(action.key);
-      console.log(state[action.key].name);
-      console.log(action.key === state[action.key].name);
+    case SET_ALL_CHARACTERS: {
+      const newState = cloneDeep(state);
       return {
         ...newState,
-        [action.key]: {
-          ...newState[action.key],
-          sort: action.sort === 'ASC' ? 'ASC' : 'DESC',
-          active: action.key === newState[action.key].name,
-        }
-      };
+        allCharacters: action.payload.characters,
+      }
     }
-    // case "RESET_FILTER":
-    //   return {
-    //     ...state,
-    //     status: '',
-    //     gender: '',
-    //     specie: ''
-    //   };
+
+    case SET_CHARACTERS_TO_RENDER: {
+      let newState = cloneDeep(state);
+      return {
+        ...newState,
+        charactersToRender: {
+          ...newState.charactersToRender,
+          characters: action.payload.characters,
+          totalCount: action.payload?.totalCount
+        }
+      }
+    }
 
     default:
       return state;

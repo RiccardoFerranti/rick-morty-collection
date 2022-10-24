@@ -2,17 +2,20 @@ import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Listing from './Listing';
-import Detail from './Detail';
+import Details from './Details';
 import NotFound from './NotFound';
+import Layout from '../Layout/Layout';
 
 const AppRoutes: FC = () => (
-  <Routes>
-    <Route path="*" element={<NotFound />} />
-    <Route path="/" element={<Listing />} />
-    <Route path="/character/:id" element={<Detail />} />
-    <Route path="/episode/:id" element={<Detail />} />
-    <Route path="/location/:id" element={<Detail />} />
-  </Routes>
+  <Layout>
+    <Routes>
+      <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<Listing />} />
+      <Route path="/character/:id" element={<Details />} />
+      <Route path="/episode/:id" element={<Details />} />
+      <Route path="/location/:id" element={<Details />} />
+    </Routes>
+  </Layout>
 );
 
 export default AppRoutes;

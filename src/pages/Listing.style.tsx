@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { size } from '../const/breakpoints';
+import { size } from '../consts/breakpoints';
 
 export const StyledLogo = styled.img`
 	margin: 0 auto;
@@ -10,7 +10,6 @@ export const StyledLogo = styled.img`
 
 export const StyledContainer = styled.section`
 	margin: 0 auto;
-	/* background: red; */
 
 	@media screen and (min-width: ${size.desktopL}) {
 		width: 1280px;
@@ -53,7 +52,7 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const StyledResults = styled.p`
+export const StyledResults = styled.div`
 	text-align: center;
 	position: relative;
 `
@@ -63,4 +62,10 @@ export const StyledRowImage = styled.img`
 	border-radius: 150px;
 	margin-left: auto;
 	border: 5px solid black;
+`
+
+export const StyledSpinnerContainer =  styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
 `

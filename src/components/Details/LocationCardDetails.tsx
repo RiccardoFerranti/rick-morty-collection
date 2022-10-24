@@ -1,21 +1,36 @@
 import { FC, memo, useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 
+import CharactersListDetails from './CharactersListDetails';
 import { StyledText } from './CharacterCardDetails.style';
-
 import { StyledCardDetail, StyledDetailTitle, StyledTitle } from './DetailsCommonStyle';
-import { StyleCharacterEpisodeDetail, StyledCharactersList, StyledEpisodeDetailImage } from './EpisodeCardDetails.style';
+import { StyleCharacterEpisodeDetail } from './EpisodeCardDetails.style';
 
 import Loading from '../Loading/Loading';
-import { LOAD_LOCATION_BY_ID } from '../../GraphQL/Queries';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-interface ICardLocationDetailsProps {
-  props: number
+import { LOAD_LOCATION_BY_ID } from '../../GraphQL/Queries';
+import cacheImages from '../../helpers/cacheImages';
+import { IResident } from '../../models';
+
+interface IDimension {
+  id: string,
+  name: string,
+  type: string,
+  dimension: string,
+  residents: IResident[]
 }
 
-const CardLocationDetails: FC<ICardLocationDetailsProps> = ({ props }) => {
-  const [location, setLocation] = useState<any>(undefined);
+export interface ICardLocationDetailsProps {
+  id: number
+}
+
+export const LocationCardDetails: FC<ICardLocationDetailsProps> = ({ id }) => {
+  const [location, setLocation] = useState<IDimension | undefined>(undefined);
+  const [loadingImages, setLoadingImages] = useState(false);
   const [selectedRecordToFetch, setSelectedRecordToFetch] = useState<{name: string | null, id: string | null}>({
     name: null,
     id: null
@@ -24,14 +39,21 @@ const CardLocationDetails: FC<ICardLocationDetailsProps> = ({ props }) => {
   const navigate = useNavigate();
 
   const { error, loading, data } = useQuery(LOAD_LOCATION_BY_ID, {
-    variables: { id: props },
+    variables: { id },
   });
 
-  const locationFetched = data?.locationsByIds?.[0];
+  const locationFetched = data?.locationsByIds?.[0] || {};
 
-  useEffect(() => {
-    if (!error && locationFetched) {
+  useDeepCompareEffect(() => {
+    if (!error && Object.values(locationFetched).length) {
       setLocation(locationFetched);
+
+      const preloadImages = async () => {
+        setLoadingImages(true);
+        await cacheImages(locationFetched.residents);
+        setLoadingImages(false);
+      }
+      preloadImages();
     }
   }, [locationFetched, error]);
 
@@ -41,31 +63,32 @@ const CardLocationDetails: FC<ICardLocationDetailsProps> = ({ props }) => {
     }
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 
+  if (loading) {
+    return <Loading title='location' />
+  }
+  
+  if (error) {
+    return <ErrorMessage error={error} />
+  }
+  
   return (
     <StyledCardDetail>
-      {loading && <Loading title='location details' />}
-      {error && <p>error</p>}
-      {!error && location ? <>
+      {location ? <>
         <StyledDetailTitle>
           <StyledTitle>{location.name}</StyledTitle>
         </StyledDetailTitle>
         <StyleCharacterEpisodeDetail>
-          <StyledText>It's a {location.type} located in the {location.dimension}</StyledText>
+          <StyledText data-testid="details-location-description">It's a {location.type} located in the {location.dimension}</StyledText>
           <StyledText>List of characters who have been last seen in the location:</StyledText>
-          <StyledCharactersList>
-            {!location.residents.length
-              ? <StyledText> -- Nobody -- </StyledText>:
-              location.residents.map(({ id, image, name }: { id: string, image: string, name: string }) => (
-                <li key={`${name}-${id}`} onClick={() => setSelectedRecordToFetch({ name, id })}>
-                  <StyledEpisodeDetailImage src={image} />
-                  <p>{name}</p>
-                </li>
-            ))}
-          </StyledCharactersList>
+          <CharactersListDetails 
+            characters={location?.residents}
+            handleSetSelectedRecordToFetch={setSelectedRecordToFetch}
+            loadingImages={loadingImages}
+          />
         </StyleCharacterEpisodeDetail>
       </>: null}
     </StyledCardDetail>
   );
 };
 
-export default memo(CardLocationDetails);
+export default memo(LocationCardDetails);

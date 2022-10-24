@@ -1,11 +1,8 @@
-import { useQuery } from '@apollo/client';
 import { FC, memo, useEffect, useState, ReactElement } from 'react';
+
+import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import { LOAD_CHARACTER_BY_ID } from '../../GraphQL/Queries';
 
-import { ICharacter } from '../../model';
-
-import Loading from '../Loading/Loading';
 import { 
   StyleCardCharacterText,
   StyleCardCharacterTextContainer,
@@ -18,20 +15,35 @@ import {
 import { StyledDetailTitle, StyledCardDetail } from './DetailsCommonStyle';
 
 
-interface ICardCharactedDetailsProps {
+import Loading from '../Loading/Loading';
+
+import characterPlaceholder from "../../images/character-placeholder.jpeg";
+import { LOAD_CHARACTER_BY_ID } from '../../GraphQL/Queries';
+import { ICharacter  } from '../../models';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+
+export interface IHandleSetSelectedItemToFetchParams {
+  params: {
+    name: string,
+    id: string
+  },
+  type: string
+}
+export interface ICardCharacterOriginDetailsProps {
   character: ICharacter
+  handleSetSelectedItemToFetch: (x: IHandleSetSelectedItemToFetchParams) => void,
 }
 
-const CardCharacterOriginDetails: FC<any> = ({ character, handleSetSelectedItemToFetch }) => {
+export const CardCharacterOriginDetails: FC<ICardCharacterOriginDetailsProps> = ({ character, handleSetSelectedItemToFetch }) => {
   if (character.origin.dimension === 'unknown') {
     return (    
       <StyledText>
-        The origin is {character.origin?.name}, it's a {character.origin.type.toLowerCase()} situated in unknown dimension
+        The origin is {character.origin?.name}, it's a {character.origin.type !== null && character.origin.type.toLowerCase()} situated in unknown dimension
       </StyledText>
     )
   }
 
-  if (character.origin.name && character.origin.type && character.origin.dimension) {
+  if (character.origin.id && character.origin.name && character.origin.type && character.origin.dimension) {
     return (
      <StyledText>
           The origin is {character.origin?.name}, it's a {character.origin.type.toLowerCase()} situated in the
@@ -40,7 +52,7 @@ const CardCharacterOriginDetails: FC<any> = ({ character, handleSetSelectedItemT
               onClick={() => handleSetSelectedItemToFetch({ 
                 params: {
                   name: character.origin.name.toLowerCase().replaceAll(' ', '-'),
-                  id: character.origin.id,
+                  id: character.origin.id!,
                 },
                 type: 'location',
               })}
@@ -53,28 +65,27 @@ const CardCharacterOriginDetails: FC<any> = ({ character, handleSetSelectedItemT
   return <StyledText>The origin is {character.origin?.name}</StyledText>;
 }
 
-interface ICardCharactedDetailssProps {
-  props: number
+export interface ICardCharacterDetailsProps {
+  id: number
 }
 
-const CardCharactedDetails: FC<ICardCharactedDetailssProps> = ({ props }) => {
-  console.log('', props)
-  const [character, setCharacter] = useState<any>(undefined);
-  const [selectedItemToFetch, setSelectedItemToFetch] = 
-  useState<{params: { name: string | null, id: string | null }, type: string | null}>({
-    params: {
-      name: null,
-      id: null
-    },
+const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
+  const [character, setCharacter] = useState<ICharacter | undefined>(undefined);
+  const [selectedItemToFetch, setSelectedItemToFetch] = useState<
+    { params: { name: string | null, id: string | null },
+    type: string | null}
+  >({
+    params: { name: null, id: null },
     type: null,
   });
-  
+
   const { error, loading, data } = useQuery(LOAD_CHARACTER_BY_ID, {
-    variables: { id: props },
+    variables: { id },
   });
   
   const navigate = useNavigate();
   
+  let characterImage = '';
   const characterFetched = data?.charactersByIds?.[0];
 
   useEffect(() => {
@@ -85,7 +96,6 @@ const CardCharactedDetails: FC<ICardCharactedDetailssProps> = ({ props }) => {
 
   useEffect(() => {
     if (selectedItemToFetch.params.name && selectedItemToFetch.params.id && selectedItemToFetch.type) {
-      console.log(selectedItemToFetch.params.id)
       navigate(`/${selectedItemToFetch.type}/${selectedItemToFetch.params.name}`, { state: selectedItemToFetch.params.id })
     }
   }, [selectedItemToFetch.params.name, selectedItemToFetch.params.id, selectedItemToFetch.type, navigate])
@@ -107,14 +117,25 @@ const CardCharactedDetails: FC<ICardCharactedDetailssProps> = ({ props }) => {
     }
   }
 
+  if (loading) {
+    return <Loading title='character' />
+  }
+  
+  if (error) {
+    return <ErrorMessage error={error} />
+  }
+
+  if (character?.image) {
+    // load a character placeholder in case the image is not available
+    characterImage = character.image !== null ? character.image : characterPlaceholder;
+  }
+
   return (
     <StyledCardDetail>
-      {loading && <Loading title='character details' />}
-      {error && <p>error</p>}
-      {!error && character ? <>
-        <StyledDetailTitle><>#{character.id} - {character.name} </></StyledDetailTitle>
+      {character ? <>
+        <StyledDetailTitle><>#{character.id} - {character.name}</></StyledDetailTitle>
         <StyleCharacterCardContainer>
-          <StyledCharacterDetailImage src={character.image} />
+          <StyledCharacterDetailImage src={characterImage} />
           <StyleCardCharacterTextContainer>
             <StyleCardCharacterText> 
               <StyledText>
@@ -143,4 +164,4 @@ const CardCharactedDetails: FC<ICardCharactedDetailssProps> = ({ props }) => {
   );
 };
 
-export default memo(CardCharactedDetails);
+export default memo(CardCharacterDetails);

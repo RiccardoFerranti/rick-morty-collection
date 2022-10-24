@@ -1,8 +1,9 @@
-import { TiDeleteOutline } from "react-icons/ti";
 import styled from "styled-components";
-import { size } from "../../const/breakpoints";
+import { TiDeleteOutline } from "react-icons/ti";
 
-export const StyledFilters = styled.div`
+import { size } from "../../consts/breakpoints";
+
+export const StyledFilters = styled.section`
   display: flex;
   padding: 10px;
   margin: 20px 0;
@@ -62,7 +63,6 @@ export const StyledResetFilters = styled.p`
 
 export const StyledResetFilterIcon = styled(TiDeleteOutline)`
   font-size: 22px;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   display: block;
 `
-

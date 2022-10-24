@@ -1,20 +1,21 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
+
 import { StyledLayout, StyledLogo } from './Layout.style';
 
 import logo from "../images/rick-and-morty-logo.jpeg";
-import { Link } from 'react-router-dom';
 
+interface ILayoutProps {
+  children: JSX.Element | JSX.Element[],
+}
 
-const Layout: FC<any> = ({ children }) => (
+const Layout: FC<ILayoutProps> = ({ children }) => (
   <>
     <header>
-      <Link to="/"><StyledLogo src={logo} /></Link>
+      <Link to="/"><StyledLogo src={logo} title="Rick and Morty Logo" alt="Rick and Morty" /></Link>
     </header>
-    <main>
-      <StyledLayout>{children}</StyledLayout>
-    </main>
-</>
+    <StyledLayout>{children}</StyledLayout>
+  </>
 );
 
 export default Layout;
-

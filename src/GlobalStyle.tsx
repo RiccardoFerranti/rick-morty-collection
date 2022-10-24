@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle<{theme: TTheme}>`
   body {
     background-color: ${({ theme }) => theme.colors.body};
     font-family: 'Open Sans', sans-serif;
-    color: white;
+    color: ${({ theme }) => theme.colors.text};
   }
 `
 

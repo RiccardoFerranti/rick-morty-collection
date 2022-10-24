@@ -1,25 +1,29 @@
-import { FC, memo } from "react";
+import { FC, memo, MouseEvent } from "react";
 
-import { StyledIconSortingNumberAscending, StyledIconSortingNumberDescending, StyledSortingNumericField } from "./SortingNumericField.style";
+import {
+  StyledIconSortingNumberAscending,
+  StyledIconSortingNumberDescending,
+  StyledSortingNumericField
+} from "./SortingNumericField.style";
 
-interface ISortingNumericFieldProps {
+export interface ISortingNumericFieldProps {
   label: string,
   active: boolean,
   sorting: string,
-  onClick: any,
+  onClick: (e: MouseEvent<HTMLElement>) => void,
 }
 
-const SortingNumericField: FC<ISortingNumericFieldProps> = ({ label, active, onClick, sorting }) => {
-
-  return (
-      <StyledSortingNumericField onClick={onClick}>
-        {`Sort by ${label}:`}
-        {sorting === 'ASC'
-          ? <StyledIconSortingNumberAscending active={active} />
-          : <StyledIconSortingNumberDescending active={active} />
-        }
-      </StyledSortingNumericField>
-  )
-}
+const SortingNumericField: FC<ISortingNumericFieldProps> = ({ label, active, onClick, sorting }) => (
+  <StyledSortingNumericField
+    onClick={onClick}
+    aria-label={`sorting-numeric-field-${label.replaceAll(' ', '-').toLocaleLowerCase()}`}
+  >
+    {`Sort by ${label}:`}
+    {sorting === 'ASC'
+      ? <StyledIconSortingNumberAscending $active={active} />
+      : <StyledIconSortingNumberDescending $active={active} />
+    }
+  </StyledSortingNumericField>
+);
 
 export default memo(SortingNumericField);
