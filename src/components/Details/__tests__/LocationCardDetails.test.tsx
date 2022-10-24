@@ -1,7 +1,7 @@
 import { act, screen } from '@testing-library/react';
 import { wait } from '@testing-library/user-event/dist/utils';
 
-import LocationCardDetails, { ICardLocationDetailsProps } from '../LocationCardDetails';
+import LocationCardDetails from '../LocationCardDetails';
 
 import { LOAD_LOCATION_BY_ID } from '../../../GraphQL/Queries';
 import { ICharactersState } from '../../../redux/characters/characters.slice';
@@ -46,17 +46,15 @@ const mockQueryResultError = [
 ]
 
 describe('LocationCardDetails', () => {
-  let mockedProps: ICardLocationDetailsProps;
   let mockedStore: ICharactersState;
-  const mockedLocation = { path: '/' }
+  const mockedLocation = { path: '/rick-morty-collection/location/1' }
 
   const renderView = (
-    props: ICardLocationDetailsProps = mockedProps,
     location = mockedLocation,
     store: ICharactersState = mockedStore,
     mockQueryResult: any = mockQueryResultSuccess(locationsByIds)
   ) => renderWithProvider(
-    <LocationCardDetails {...props} />,
+    <LocationCardDetails />,
     { isRouter: true, location },
     {
       preloadedState: {
@@ -68,11 +66,10 @@ describe('LocationCardDetails', () => {
 
   beforeEach(() => {
     mockedStore = generateMockedState();
-    mockedProps = { id: 1 };
   });
 
   it('should render the Error component properly', async () => {
-    renderView(mockedProps, mockedLocation, mockedStore, mockQueryResultError);
+    renderView(mockedLocation, mockedStore, mockQueryResultError);
 
     await act(wait);
     expect(await screen.findByText("An error occurred")).toBeInTheDocument();
@@ -106,7 +103,7 @@ describe('LocationCardDetails', () => {
   it('should render properly the location details when residents is an empty array', async () => {
     const data = JSON.parse(JSON.stringify(locationsByIds));
     data[0].residents = [];
-    renderView(mockedProps ,mockedLocation, mockedStore, mockQueryResultSuccess(data));
+    renderView(mockedLocation, mockedStore, mockQueryResultSuccess(data));
     
     expect(screen.queryByText('-- Nobody --')).not.toBeInTheDocument();
     await act(wait);

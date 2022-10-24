@@ -1,7 +1,7 @@
 import { act, screen } from '@testing-library/react';
 import { wait } from '@testing-library/user-event/dist/utils';
 
-import EpisodeCardDetails, { IEpisodeCardDetailsProps } from '../EpisodeCardDetails';
+import EpisodeCardDetails from '../EpisodeCardDetails';
 
 import { LOAD_EPISODE_BY_ID } from '../../../GraphQL/Queries';
 import { ICharactersState } from '../../../redux/characters/characters.slice';
@@ -48,17 +48,15 @@ const mockQueryResultError = [
 type TMockQueryResult = typeof mockQueryResultSuccess | typeof mockQueryResultError
 
 describe('EpisodeCardDetails', () => {
-  let mockedProps: IEpisodeCardDetailsProps;
   let mockedStore: ICharactersState;
-  const mockedLocation = { path: '/' }
+  const mockedLocation = { path: '/rick-morty-collection/episode/1' }
 
   const renderView = (
-    props: IEpisodeCardDetailsProps = mockedProps,
     location = mockedLocation,
     store: ICharactersState = mockedStore,
     mockQueryResult: TMockQueryResult = mockQueryResultSuccess
   ) => renderWithProvider(
-    <EpisodeCardDetails {...props} />,
+    <EpisodeCardDetails />,
     { isRouter: true, location },
     {
       preloadedState: {
@@ -69,12 +67,11 @@ describe('EpisodeCardDetails', () => {
   );
 
   beforeEach(() => {
-    mockedStore = generateMockedState();
-    mockedProps = { id: 1 };
+    mockedStore = generateMockedState();;
   });
 
   it('should render the Error component properly', async () => {
-    renderView(mockedProps, mockedLocation, mockedStore, mockQueryResultError);
+    renderView(mockedLocation, mockedStore, mockQueryResultError);
 
     await act(wait);
     expect(await screen.findByText("An error occurred")).toBeInTheDocument();

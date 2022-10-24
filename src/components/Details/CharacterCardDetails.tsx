@@ -65,10 +65,6 @@ export const CardCharacterOriginDetails: FC<ICardCharacterOriginDetailsProps> = 
   return <StyledText>The origin is {character.origin?.name}</StyledText>;
 }
 
-// export interface ICardCharacterDetailsProps {
-//   id: number
-// }
-
 const CardCharacterDetails: FC = () => {
   const [character, setCharacter] = useState<ICharacter | undefined>(undefined);
   const [selectedItemToFetch, setSelectedItemToFetch] = useState<
@@ -80,9 +76,11 @@ const CardCharacterDetails: FC = () => {
   });
 
   const { id } = useParams();
+ 
+  const idToFetch = id ? +id : undefined;
 
   const { error, loading, data } = useQuery(LOAD_CHARACTER_BY_ID, {
-    variables: { id },
+    variables: { id: idToFetch },
   });
 
   const navigate = useNavigate();
@@ -98,7 +96,7 @@ const CardCharacterDetails: FC = () => {
 
   useEffect(() => {
     if (selectedItemToFetch.params.name && selectedItemToFetch.params.id && selectedItemToFetch.type) {
-      navigate(`/rick-morty-collection/${selectedItemToFetch.type}/${selectedItemToFetch.params.name}`, { state: selectedItemToFetch.params.id })
+      navigate(`/rick-morty-collection/${selectedItemToFetch.type}/${selectedItemToFetch.params.id}`)
     }
   }, [selectedItemToFetch.params.name, selectedItemToFetch.params.id, selectedItemToFetch.type, navigate])
 

@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 
 
 describe('BackButton', () => {  
-  const renderView = () => renderWithProvider(<BackButton />,  { isRouter: true, location: { path: '/' } });
+  const renderView = () => renderWithProvider(<BackButton />);
 
   it('should render the component properly and call the navigate function', () => {
     const { container } = renderView();

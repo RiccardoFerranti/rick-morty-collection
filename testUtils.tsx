@@ -46,19 +46,18 @@ export const generateMockedState = (
 
 interface IRouterLocation {
   path: string,
-  state?: TDictionary
 }
 
 export const withRouter = (children: ReactNode | ReactNode[], location: IRouterLocation): JSX.Element => {
- const path = location.state ? `${location.path}${location.state}` : location.path
+ const path = location.path;
 
  return (
     <MemoryRouter initialEntries={[path]}>
       <Routes>
-        <Route path="/" element={children} />
-        <Route path="/character/:id" element={children} />
-        <Route path="/episode/:id" element={children} />
-        <Route path="/location/:id" element={children} />
+        <Route path="/rick-morty-collection" element={children} />
+        <Route path="/rick-morty-collection/character/:id" element={children} />
+        <Route path="/rick-morty-collection/episode/:id" element={children} />
+        <Route path="/rick-morty-collection/location/:id" element={children} />
       </Routes>
     </MemoryRouter>
   )

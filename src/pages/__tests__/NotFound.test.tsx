@@ -6,7 +6,7 @@ import renderWithProvider from '../../../testUtils';
 describe('NotFound', () => {
   const renderView = () => renderWithProvider(
     <NotFound />,
-    { isRouter: true, location: { path: '/' } },
+    { isRouter: true, location: { path: '/rick-morty-collection' } },
   );
 
   it('should render the `404` properly', () => {

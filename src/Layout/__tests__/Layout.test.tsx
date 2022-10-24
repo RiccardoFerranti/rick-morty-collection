@@ -4,7 +4,12 @@ import Layout from '../Layout';
 import renderWithProvider from '../../../testUtils';
 
 describe('Layout', () => {
-  const routerConfig = { isRouter: true, path: '/' };
+  const routerConfig = {
+    isRouter: true,
+    location: {
+      path: '/rick-morty-collection'
+    }
+  };
   const LayoutComponent = () => <Layout><div>test</div></Layout>;
   
   it('should render the header properly', () => {

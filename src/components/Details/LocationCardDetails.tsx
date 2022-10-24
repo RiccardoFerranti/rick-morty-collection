@@ -1,6 +1,6 @@
 import { FC, memo, useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
@@ -24,11 +24,7 @@ interface IDimension {
   residents: IResident[]
 }
 
-export interface ICardLocationDetailsProps {
-  id: number
-}
-
-export const LocationCardDetails: FC<ICardLocationDetailsProps> = ({ id }) => {
+export const LocationCardDetails: FC = () => {
   const [location, setLocation] = useState<IDimension | undefined>(undefined);
   const [loadingImages, setLoadingImages] = useState(false);
   const [selectedRecordToFetch, setSelectedRecordToFetch] = useState<{name: string | null, id: string | null}>({
@@ -37,9 +33,12 @@ export const LocationCardDetails: FC<ICardLocationDetailsProps> = ({ id }) => {
   });
 
   const navigate = useNavigate();
+  const { id } = useParams();
+  
+  const idToFetch = id ? +id : undefined;
 
   const { error, loading, data } = useQuery(LOAD_LOCATION_BY_ID, {
-    variables: { id },
+    variables: { id: idToFetch },
   });
 
   const locationFetched = data?.locationsByIds?.[0] || {};
@@ -59,7 +58,7 @@ export const LocationCardDetails: FC<ICardLocationDetailsProps> = ({ id }) => {
 
   useEffect(() => {
     if (selectedRecordToFetch.name && selectedRecordToFetch.id) {
-      navigate(`/rick-morty-collection/character/${selectedRecordToFetch.name.toLowerCase().replaceAll(' ', '-')}`, { state: selectedRecordToFetch.id })
+      navigate(`/rick-morty-collection/character/${selectedRecordToFetch.id}`);
     }
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 

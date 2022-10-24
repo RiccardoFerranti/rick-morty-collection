@@ -7,7 +7,6 @@ import { ICharactersState } from '../../../redux/characters/characters.slice';
 
 import CardCharacterDetails,{
   CardCharacterOriginDetails,
-  ICardCharacterDetailsProps,
   ICardCharacterOriginDetailsProps,
 } from '../CharacterCardDetails';
 
@@ -38,17 +37,15 @@ const mockQueryResultError = [
 type TMockQueryResult = typeof mockQueryResultSuccess | typeof mockQueryResultError
 
 describe('CharacterCardDetails', () => {
-  let mockedProps: ICardCharacterDetailsProps;
   let mockedStore: ICharactersState;
-  const mockedLocation = { path: '/' }
+  const mockedLocation = { path: '/rick-morty-collection/character/1' }
 
   const renderView = (
-    props: ICardCharacterDetailsProps = mockedProps,
     location = mockedLocation,
     store: ICharactersState = mockedStore,
     mockQueryResult: TMockQueryResult = mockQueryResultSuccess
   ) => renderWithProvider(
-    <CardCharacterDetails {...props} />,
+    <CardCharacterDetails />,
     { isRouter: true, location },
     {
       preloadedState: {
@@ -60,16 +57,14 @@ describe('CharacterCardDetails', () => {
 
   beforeEach(() => {
     mockedStore = generateMockedState();
-    mockedProps = { id: 1 };
   });
 
   it('should render the Error component properly', async () => {
-    renderView(mockedProps, mockedLocation, mockedStore, mockQueryResultError);
+    renderView(mockedLocation, mockedStore, mockQueryResultError);
 
     await act(wait);
     expect(await screen.findByText("An error occurred")).toBeInTheDocument();
   });
-  
 
   it('should render the Loading component properly', async () => {
     renderView();

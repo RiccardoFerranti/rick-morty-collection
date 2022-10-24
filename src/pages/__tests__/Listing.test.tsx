@@ -23,7 +23,7 @@ jest.mock<typeof import('../../helpers/cacheImages')>('../../helpers/cacheImages
 
 describe('Listing', () => {
   let mockedStore: ICharactersState;
-  const mockedLocation = { path: '/' }
+  const mockedLocation = { path: '/rick-morty-collection' }
 
   const mockQueryResultSuccess = [
     {
