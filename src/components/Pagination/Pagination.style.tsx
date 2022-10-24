@@ -15,7 +15,7 @@ export const StyledPagesContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   &.dots:hover {
     background-color: transparent;
