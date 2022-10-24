@@ -83,9 +83,9 @@ describe('EpisodeCardDetails', () => {
   it('should render the Loading component properly', async () => {
     renderView();
     
-    expect(screen.getByText("Loading episode details")).toBeInTheDocument();
+    expect(screen.getByText("Loading episode")).toBeInTheDocument();
     await act(wait);
-    expect(screen.queryByText("Loading episode details")).not.toBeInTheDocument();
+    expect(screen.queryByText("Loading episode")).not.toBeInTheDocument();
   });
 
   it('should render properly the episode details `title`', async () => {

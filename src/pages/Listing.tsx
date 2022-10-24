@@ -4,7 +4,7 @@ import useDeepCompareEffect from 'use-deep-compare-effect';
 import { useQuery } from "@apollo/client";
 import { shallowEqual, useSelector } from 'react-redux';
 
-import {  StyledCardContainer, StyledLink, StyledResults } from "./Listing.style";
+import {  StyledCardContainer, StyledLink, StyledResults, StyledSpinnerContainer } from "./Listing.style";
 import { 
   charactersInitialState,
   charactersReducer,
@@ -31,6 +31,7 @@ import cacheImages from '../helpers/cacheImages';
 import { searchArrayByKeyValue } from '../helpers/searching';
 import { filterArrayByKeyValue } from '../helpers/filtering';
 import { sortArrayAlphabeticallyByKeyValue, sortArrayNumericallyByKeyValue } from '../helpers/sorting';
+import loadingSpinner from "../images/loading.svg";
 
 const Listing: FC = () => {
   const [loadingImages, setLoadingImages] = useState(false);
@@ -157,25 +158,27 @@ const Listing: FC = () => {
         <CountCharacters totalCount={state.charactersToRender?.totalCount} />
       </StyledResults>
       {loadingImages 
-        ? <Loading title='characters' /> :
-        <section>
-          <StyledCardContainer data-testid="listing-card-characters">
-            {state.charactersToRender.characters.map((character: ICharacter) => (
-              <StyledLink 
-                to={{ pathname: `/character/${character.name.toLowerCase().replaceAll(' ', '-')}` }}
-                state={character.id}
-                key={character.id}
-              >
-                <CardCharacter character={character} />
-              </StyledLink>
-            ))}
-          </StyledCardContainer>
-          <Pagination
-            currentPage={pagination.currentPage}
-            totalCount={state.charactersToRender.totalCount}
-            pageSize={PAGE_INTERVAL}
-          />               
-        </section>
+        ? <StyledSpinnerContainer>
+            <img src={loadingSpinner} alt='loading icon' title='loading spinned' data-testid='spinner-icon' />
+          </StyledSpinnerContainer>
+        : <section>
+            <StyledCardContainer data-testid="listing-card-characters">
+              {state.charactersToRender.characters.map((character: ICharacter) => (
+                <StyledLink 
+                  to={{ pathname: `/character/${character.name.toLowerCase().replaceAll(' ', '-')}` }}
+                  state={character.id}
+                  key={character.id}
+                >
+                  <CardCharacter character={character} />
+                </StyledLink>
+              ))}
+            </StyledCardContainer>
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalCount={state.charactersToRender.totalCount}
+              pageSize={PAGE_INTERVAL}
+            />               
+          </section>
       }
     </> 
   )

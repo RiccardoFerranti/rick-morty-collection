@@ -32,16 +32,16 @@ describe('Details', () => {
 
   it('should render the Character component properly', () => {
     renderView({ path: '/character/', state: 123 }, mockedStore);
-    expect(screen.getByText("Loading character details")).toBeInTheDocument();
+    expect(screen.getByText("Loading character")).toBeInTheDocument();
   });
 
   it('should render the Episode component properly', () => {
     renderView({ path: '/episode/', state: 123 }, mockedStore);
-    expect(screen.getByText("Loading episode details")).toBeInTheDocument();
+    expect(screen.getByText("Loading episode")).toBeInTheDocument();
   });
 
   it('should render the Location component properly', () => {
     renderView({ path: '/location/', state: 123 }, mockedStore);
-    expect(screen.getByText("Loading location details")).toBeInTheDocument();
+    expect(screen.getByText("Loading location")).toBeInTheDocument();
   });
 });

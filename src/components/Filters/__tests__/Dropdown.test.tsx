@@ -1,11 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import renderWithProvider from '../../../../testUtils';
 
 import Dropdown, { IDropdownProps } from '../Dropdown';
 
 describe('Dropdown', () => {
   let mockedProps: IDropdownProps;
 
-  const renderView = (props: IDropdownProps = mockedProps) => render(<Dropdown {...props} />);
+  const renderView = (props: IDropdownProps = mockedProps) => renderWithProvider(<Dropdown {...props} />);
   const mockedOnChangeFn = ()  => jest.fn();
 
   const testOptions = [

@@ -118,7 +118,7 @@ const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
   }
 
   if (loading) {
-    return <Loading title='character details' />
+    return <Loading title='character' />
   }
   
   if (error) {

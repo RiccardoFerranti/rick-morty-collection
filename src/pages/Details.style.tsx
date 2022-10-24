@@ -10,7 +10,7 @@ export const StyledButtonWrapper = styled.nav`
 `;
 
 export const StyledBackButton = styled.button`
-	color: white;
+	color: ${({ theme }) => theme.colors.text};
   background: none;
   border: none;
   height: 40px;

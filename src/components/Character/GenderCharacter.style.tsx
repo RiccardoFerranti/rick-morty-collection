@@ -6,7 +6,7 @@ import { RiGenderlessLine } from "react-icons/ri";
 
 export const StyledGenderIcon = css`
   width: 40px;
-  color: #BCFE92;
+  color: ${({ theme }) => theme.colors.highlight};
   margin-left: auto;
 `
 

@@ -1,12 +1,13 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { charactersDetailList } from '../../../../mockeData';
+import renderWithProvider from '../../../../testUtils';
 
 import CharactersListDetails, { ICharactersListDetailsProps } from '../CharactersListDetails';
 
 describe('CharactersListDetails', () => {
   let mockedProps: ICharactersListDetailsProps;
 
-  const renderView = (props: ICharactersListDetailsProps = mockedProps) => render(<CharactersListDetails {...props} />);
+  const renderView = (props: ICharactersListDetailsProps = mockedProps) => renderWithProvider(<CharactersListDetails {...props} />);
 
   beforeEach(() => {
     mockedProps = {

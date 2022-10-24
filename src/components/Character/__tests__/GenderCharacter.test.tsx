@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import renderWithProvider from '../../../../testUtils';
 
 import GenderCharacter, { IGenderCharacterProps } from '../GenderCharacter';
 
 describe('GenderCharacter', () => {  
-  const renderView = (props: IGenderCharacterProps) => render(<GenderCharacter {...props} />);
+  const renderView = (props: IGenderCharacterProps) => renderWithProvider(<GenderCharacter {...props} />);
 
 
   it('should not render the nothing when gender prop is not `male`, `female, `genderless` or `unknown`', () => {

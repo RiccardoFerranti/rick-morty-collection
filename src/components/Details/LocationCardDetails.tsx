@@ -64,7 +64,7 @@ export const LocationCardDetails: FC<ICardLocationDetailsProps> = ({ id }) => {
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 
   if (loading) {
-    return <Loading title='location details' />
+    return <Loading title='location' />
   }
   
   if (error) {

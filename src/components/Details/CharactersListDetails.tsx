@@ -1,14 +1,15 @@
 import { FC } from "react";
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import { StyledDetailCardCharacterImage } from "./DetailsCommon.style";
 import { StyledText } from "./CharacterCardDetails.style";
-import { StyledCharactersList } from "./EpisodeCardDetails.style";
+import { StyledCharactersList } from "./CharactersListDetails.style";
 
 import characterPlaceholder from "../../images/character-placeholder.jpeg";
 import loadingSpinner from "../../images/loading.svg";
 import { IResident } from "../../models";
 
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export interface ICharactersListDetailsProps {
   characters: Array<IResident>,

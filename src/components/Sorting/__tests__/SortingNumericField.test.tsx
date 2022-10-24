@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import renderWithProvider from '../../../../testUtils';
 import SortingNumericField, { ISortingNumericFieldProps } from '../SortingNumericField';
 
 describe('SortingNumericField', () => {
@@ -9,7 +10,7 @@ describe('SortingNumericField', () => {
     onClick: jest.fn()
   };
 
-  const renderView = (props: ISortingNumericFieldProps = mockedProps) => render(<SortingNumericField {...props} />);
+  const renderView = (props: ISortingNumericFieldProps = mockedProps) => renderWithProvider(<SortingNumericField {...props} />);
 
   it('should render the `label` properly', () => {
     renderView();

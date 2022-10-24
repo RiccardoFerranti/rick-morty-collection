@@ -13,9 +13,13 @@ export const StyleLoadingContainer = styled.div`
   p {
     position: relative;
     font-size: 28px;
-    color: white;
+    color: ${({ theme }) => theme.colors.text};
     margin-right: 25px,
   }
+
+  @media screen and (max-width: ${size.mobile}) {
+    top: 450px;
+	}
 `
 export const StyleDotsAnimation = styled.div`
   position: relative;
@@ -23,7 +27,7 @@ export const StyleDotsAnimation = styled.div`
   height: 8px;
   border-radius: 4px;
   background-color: white;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   animation: dotFlashing 1s infinite linear alternate;
   animation-delay: .5s;
   margin-left: 20px;
@@ -47,8 +51,7 @@ export const StyleDotsAnimation = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 4px;
-    background-color: white;
-    color: white;
+    color: ${({ theme }) => theme.colors.text};
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 0s;
 

@@ -73,7 +73,7 @@ export const StyledEpisodesList = styled.ul`
 	}
 
 	li:hover {
-		background-color: #BCFE92;
+		background-color: ${({ theme }) => theme.colors.highlight};
 	}
 
 	li p {

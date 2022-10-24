@@ -31,7 +31,7 @@ const CardCharacter: FC<ICardCharacterProps> = ({ character }) => {
         <GenderCharacter gender={gender} />
       </StyledCharacterTitle>
       <StyleCardContainer>
-        <StyledCharacterImage src={image || characterPlaceholder} realSize={false} />
+        <StyledCharacterImage src={image || characterPlaceholder} realSize={false} title={name} alt={`${name} image`} />
         <StyleCardTextContainer>
           <StyleCardText> 
             <StyleTextHighlight>{species}</StyleTextHighlight>

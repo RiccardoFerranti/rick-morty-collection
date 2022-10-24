@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { wait } from '@testing-library/user-event/dist/utils';
 import { charactersDetails } from '../../../../mockeData';
 import renderWithProvider, { generateMockedState } from '../../../../testUtils';
@@ -74,9 +74,9 @@ describe('CharacterCardDetails', () => {
   it('should render the Loading component properly', async () => {
     renderView();
     
-    expect(screen.getByText("Loading character details")).toBeInTheDocument();
+    expect(screen.getByText("Loading character")).toBeInTheDocument();
     await act(wait);
-    expect(screen.queryByText("Loading character details")).not.toBeInTheDocument();
+    expect(screen.queryByText("Loading character")).not.toBeInTheDocument();
   });
 
   it('should render properly the character details title', async () => {
@@ -122,7 +122,7 @@ describe('CharacterCardDetails', () => {
 describe('CardCharacterOriginDetails', () => {
   let mockedProps: ICardCharacterOriginDetailsProps;
 
-  const renderView = (props: ICardCharacterOriginDetailsProps = mockedProps) => render(
+  const renderView = (props: ICardCharacterOriginDetailsProps = mockedProps) => renderWithProvider(
     <CardCharacterOriginDetails {...props} 
   />);
 

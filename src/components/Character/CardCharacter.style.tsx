@@ -25,8 +25,8 @@ export const StyledCard = styled.li`
 	margin-top: 10px;
 	margin-bottom: 10px;
   border-radius: 8px;
-	background: #282831;
-	color: white;
+	background: ${({ theme }) => theme.colors.cardBackground};
+	color: ${({ theme }) => theme.colors.text};
 	min-height: 270px;
   height: auto;
 
@@ -48,11 +48,11 @@ export const StyledCharacterTitle = styled.p`
 	font-size: 22px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 	width: 100%;
-	background: #1b1b1b;
+	background: ${({ theme }) => theme.colors.cardBackgroundTitle};
+	color: ${({ theme }) => theme.colors.text};
 	padding: 10px;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
-	color: white;
 	display: flex;
   align-items: center;
 `;

@@ -61,7 +61,7 @@ const EpisodeCardDetails: FC<IEpisodeCardDetailsProps> = ({ id }) => {
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 
   if (loading) {
-    return <Loading title='episode details' />
+    return <Loading title='episode' />
   }
   
   if (error) {

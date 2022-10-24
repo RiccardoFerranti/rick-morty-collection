@@ -1,6 +1,6 @@
 import { TDictionary } from "../commonTypes";
 
-const cacheImages = async (srcImages: Array<TDictionary>) => {
+const cacheImages = async (srcImages: Array<TDictionary<string>>) => {
   const promises = await srcImages.map((obj) => {
     return new Promise((resolve, reject) => {
       const img = new Image();

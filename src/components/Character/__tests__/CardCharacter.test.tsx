@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import renderWithProvider from '../../../../testUtils';
 
 import CardCharacter, { ICardCharacterProps } from '../CardCharacter';
 
 describe('CardCharacter', () => {
   let mockedProps: ICardCharacterProps;
 
-  const renderView = (props: ICardCharacterProps) => render(<CardCharacter {...props} />);
+  const renderView = (props: ICardCharacterProps) => renderWithProvider(<CardCharacter {...props} />);
 
   beforeEach(() => {
     mockedProps = {

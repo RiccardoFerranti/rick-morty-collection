@@ -18,6 +18,7 @@ describe('BackButton', () => {
     const { container } = renderView();
 
     expect(screen.getByRole('button')).toBeInTheDocument();
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(screen.getByText('BACK')).toBeInTheDocument();
 

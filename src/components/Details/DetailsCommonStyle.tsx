@@ -4,20 +4,20 @@ import { size } from "../../consts/breakpoints";
 
 export const StyledCardDetail = styled.section`
 	position: relative;
-	background: #282831;
-	color: white;
+	background: ${({ theme }) => theme.colors.cardBackground};
+	color: ${({ theme }) => theme.colors.text};
   border-radius: 8px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 `;
 
-export const StyledDetailTitle = styled.h1`
+export const StyledDetailTitle = styled.div`
   font-size: 32px;
   text-shadow: 0px 4px 0px rgb(0 0 0);
   font-weight: 700;
 	width: 100%;
-	background: #1b1b1b;
-	color: white;
+	background: ${({ theme }) => theme.colors.cardBackgroundTitle};
+	color: ${({ theme }) => theme.colors.text};
 	padding: 10px;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;

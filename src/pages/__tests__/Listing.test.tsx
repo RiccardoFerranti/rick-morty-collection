@@ -63,10 +63,12 @@ describe('Listing', () => {
     }
   ]
   
+  type TMockQueryResult = typeof mockQueryResultSuccess | typeof mockQueryResultError
+
   const renderView = (
     location = mockedLocation,
     store: ICharactersState = mockedStore,
-    mockQueryResult: any = mockQueryResultSuccess
+    mockQueryResult: TMockQueryResult = mockQueryResultSuccess
   ) => renderWithProvider(
     <Listing />,
     { isRouter: true, location },

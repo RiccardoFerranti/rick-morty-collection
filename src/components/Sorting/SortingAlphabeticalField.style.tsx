@@ -12,11 +12,11 @@ export const StyledSortingAlphabeticalField = styled.div`
 `;
 
 export const StyledIconSortingAscending = styled(AiOutlineSortAscending)<IStyledIconSorting>`
-  color: ${props => props.$active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `
 
 export const StyledIconSortingDescending = styled(AiOutlineSortDescending)<IStyledIconSorting>`
-  color: ${props => props.$active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `

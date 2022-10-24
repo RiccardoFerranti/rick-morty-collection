@@ -81,9 +81,9 @@ describe('LocationCardDetails', () => {
   it('should render the Loading component properly', async () => {
     renderView();
     
-    expect(screen.getByText("Loading location details")).toBeInTheDocument();
+    expect(screen.getByText("Loading location")).toBeInTheDocument();
     await act(wait);
-    expect(screen.queryByText("Loading location details")).not.toBeInTheDocument();
+    expect(screen.queryByText("Loading location")).not.toBeInTheDocument();
   });
 
   it('should render properly the location details `name`', async () => {

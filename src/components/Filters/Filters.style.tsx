@@ -63,6 +63,6 @@ export const StyledResetFilters = styled.p`
 
 export const StyledResetFilterIcon = styled(TiDeleteOutline)`
   font-size: 22px;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   display: block;
 `

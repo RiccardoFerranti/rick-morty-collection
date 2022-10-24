@@ -17,13 +17,13 @@ export const StyledSearchField = styled.div`
 `
 
 export const StyledTextInput = styled.input`
-  background: #282831;
+  background: ${({ theme }) => theme.colors.cardBackground};
   width: 250px; 
   height: 40px;
   border-radius: 6px;
   font-size: 14px;
   line-height: 1;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   padding: 0 30px 0 10px;
   margin: 0 0 0 10px;
   border: 1px solid grey;
@@ -31,7 +31,7 @@ export const StyledTextInput = styled.input`
   &:focus,
   &:active {
     outline: none;
-    background: #282831;
+    background: ${({ theme }) => theme.colors.cardBackground};
   }
 
   &:-webkit-autofill,
@@ -43,7 +43,7 @@ export const StyledTextInput = styled.input`
   }
 
   &::placeholder {
-    color: white;
+    color: ${({ theme }) => theme.colors.text};
   }
 
   @media screen and (max-width: ${size.tablet}) {
@@ -57,7 +57,7 @@ export const StyledTextInput = styled.input`
 
 export const StyledClearSearchIcon = styled(TiDeleteOutline)`
   font-size: 22px;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   position: absolute;
   display: block;
   top: 9px;

@@ -12,11 +12,11 @@ export const StyledSortingNumericField = styled.div`
 `;
 
 export const StyledIconSortingNumberAscending = styled(BsSortNumericDown)<IStyledIconSorting>`
-  color: ${props => props.$active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `
 
 export const StyledIconSortingNumberDescending = styled(BsSortNumericUp)<IStyledIconSorting>`
-  color: ${props => props.$active ? '#BCFE92' : 'white'};
+  color: ${props => props.$active ? props.theme.colors.highlight : props.theme.colors.text};
   font-size: 24px;
 `

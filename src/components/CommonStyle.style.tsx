@@ -2,6 +2,6 @@
 import styled from 'styled-components';
 
 export const StyleTextHighlight = styled.span`
-	color: #BCFE92;
+	color: ${({ theme }) => theme.colors.highlight};
 	font-weight: 600;
 `
