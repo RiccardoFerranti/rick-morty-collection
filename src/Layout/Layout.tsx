@@ -12,7 +12,7 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ children }) => (
   <>
     <header>
-      <Link to="/"><StyledLogo src={logo} title="Rick and Morty Logo" alt="Rick and Morty" /></Link>
+      <Link to="/rick-morty-collection"><StyledLogo src={logo} title="Rick and Morty Logo" alt="Rick and Morty" /></Link>
     </header>
     <StyledLayout>{children}</StyledLayout>
   </>

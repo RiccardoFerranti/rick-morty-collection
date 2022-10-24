@@ -23,7 +23,10 @@ const Filters: FC = () => {
 
   const handleResetFilters = () => {
     dispatch(resetFilters({ filters: ['status', 'gender', 'specie'] }));
-    dispatch(setCurrentPage({ currentPage: 1 }));
+    // set the current page to 1 just when at least one filter was set
+    if (!Object.values(filters).every((filter) => filter === '')) {
+      dispatch(setCurrentPage({ currentPage: 1 }));
+    }
   };
 
   const getDropdownOptions = (filterKey: string): Array<{label: string, value: string}> => {
