@@ -14,8 +14,8 @@ const AppRoutes: FC = () => (
       <Route path="rick-morty-collection/character/:id" element={<Details />} />
       <Route path="rick-morty-collection/episode/:id" element={<Details />} />
       <Route path="rick-morty-collection/location/:id" element={<Details />} />
-      <Route path='/rick-morty-collection/404' element={<NotFound/>} />
-      <Route path='*' element={<Navigate replace to='/rick-morty-collection/404'/>} />
+      <Route path='/404' element={<NotFound/>} />
+      <Route path='*' element={<Navigate replace to='/404'/>} />
     </Routes>
   </Layout>
 );
