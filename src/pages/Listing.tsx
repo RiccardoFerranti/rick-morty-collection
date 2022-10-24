@@ -165,7 +165,7 @@ const Listing: FC = () => {
             <StyledCardContainer data-testid="listing-card-characters">
               {state.charactersToRender.characters.map((character: ICharacter) => (
                 <StyledLink 
-                  to={{ pathname: `/rick-morty-collection/character/${character.name.toLowerCase().replaceAll(' ', '-')}` }}
+                  to={{ pathname: `/rick-morty-collection/character/${character.id}` }}
                   state={character.id}
                   key={character.id}
                 >

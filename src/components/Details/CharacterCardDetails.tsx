@@ -1,7 +1,7 @@
 import { FC, memo, useEffect, useState, ReactElement } from 'react';
 
 import { useQuery } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { 
   StyleCardCharacterText,
@@ -65,11 +65,11 @@ export const CardCharacterOriginDetails: FC<ICardCharacterOriginDetailsProps> = 
   return <StyledText>The origin is {character.origin?.name}</StyledText>;
 }
 
-export interface ICardCharacterDetailsProps {
-  id: number
-}
+// export interface ICardCharacterDetailsProps {
+//   id: number
+// }
 
-const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
+const CardCharacterDetails: FC = () => {
   const [character, setCharacter] = useState<ICharacter | undefined>(undefined);
   const [selectedItemToFetch, setSelectedItemToFetch] = useState<
     { params: { name: string | null, id: string | null },
@@ -79,10 +79,12 @@ const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
     type: null,
   });
 
+  const { id } = useParams();
+
   const { error, loading, data } = useQuery(LOAD_CHARACTER_BY_ID, {
     variables: { id },
   });
-  
+
   const navigate = useNavigate();
   
   let characterImage = '';
