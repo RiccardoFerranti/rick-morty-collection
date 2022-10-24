@@ -12,7 +12,7 @@ import {
   StyledEpisodesList,
   StyledText,
 } from './CharacterCardDetails.style';
-import { StyledDetailTitle, StyledCardDetail } from './DetailsCommonStyle';
+import { StyledDetailTitle, StyledCardDetail, StyledTitle } from './DetailsCommon.style';
 
 
 import Loading from '../Loading/Loading';
@@ -130,10 +130,12 @@ const CardCharacterDetails: FC = () => {
     characterImage = character.image !== null ? character.image : characterPlaceholder;
   }
 
-  return (
+  return ( 
     <StyledCardDetail>
       {character ? <>
-        <StyledDetailTitle><>#{character.id} - {character.name}</></StyledDetailTitle>
+        <StyledDetailTitle>
+          <StyledTitle>#{character.id} - {character.name}</StyledTitle>
+        </StyledDetailTitle>
         <StyleCharacterCardContainer>
           <StyledCharacterDetailImage src={characterImage} />
           <StyleCardCharacterTextContainer>

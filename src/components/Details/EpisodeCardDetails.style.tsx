@@ -21,5 +21,6 @@ export const StyledTextDate = styled.div`
 	@media screen and (max-width: ${size.tablet}) {
 		width: 100%;
 		text-align: left;
+		margin-top: 10px;
   }
 `

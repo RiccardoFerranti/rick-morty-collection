@@ -6,7 +6,7 @@ import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import CharactersListDetails from './CharactersListDetails';
 import { StyledText } from './CharacterCardDetails.style';
-import { StyledCardDetail, StyledDetailTitle, StyledTitle } from './DetailsCommonStyle';
+import { StyledCardDetail, StyledDetailTitle, StyledTitle } from './DetailsCommon.style';
 import { StyleCharacterEpisodeDetail } from './EpisodeCardDetails.style';
 
 import Loading from '../Loading/Loading';

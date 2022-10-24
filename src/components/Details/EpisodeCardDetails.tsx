@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import { StyledText } from './CharacterCardDetails.style';
-import { StyledDetailTitle, StyledCardDetail, StyledTitle } from './DetailsCommonStyle';
+import { StyledDetailTitle, StyledCardDetail, StyledTitle } from './DetailsCommon.style';
 import { StyleCharacterEpisodeDetail, StyledTextDate } from './EpisodeCardDetails.style';
 import CharactersListDetails from './CharactersListDetails';
 
