@@ -34,7 +34,7 @@ const Details: FC = () => {
         <StyledBackButton 
           type='button'
           id='details-list-characters-button'
-          onClick={() => navigate('/rick-morty-collection')}
+          onClick={() => navigate('/')}
           data-testid='details-list-characters-button'
         >
           <span>BACK TO CHARACTERS LIST</span>

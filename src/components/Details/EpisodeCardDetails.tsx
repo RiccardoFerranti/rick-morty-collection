@@ -56,7 +56,7 @@ const EpisodeCardDetails: FC<IEpisodeCardDetailsProps> = ({ id }) => {
 
   useEffect(() => {
     if (selectedRecordToFetch.name && selectedRecordToFetch.id) {
-      navigate(`/rick-morty-collection/character/${selectedRecordToFetch.name.toLowerCase().replaceAll(' ', '-')}`, { state: selectedRecordToFetch.id })
+      navigate(`/character/${selectedRecordToFetch.name.toLowerCase().replaceAll(' ', '-')}`, { state: selectedRecordToFetch.id })
     }
   }, [selectedRecordToFetch.name, selectedRecordToFetch.id, navigate])
 

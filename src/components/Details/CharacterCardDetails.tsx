@@ -96,7 +96,7 @@ const CardCharacterDetails: FC<ICardCharacterDetailsProps> = ({ id }) => {
 
   useEffect(() => {
     if (selectedItemToFetch.params.name && selectedItemToFetch.params.id && selectedItemToFetch.type) {
-      navigate(`/rick-morty-collection/${selectedItemToFetch.type}/${selectedItemToFetch.params.name}`, { state: selectedItemToFetch.params.id })
+      navigate(`/${selectedItemToFetch.type}/${selectedItemToFetch.params.name}`, { state: selectedItemToFetch.params.id })
     }
   }, [selectedItemToFetch.params.name, selectedItemToFetch.params.id, selectedItemToFetch.type, navigate])
 

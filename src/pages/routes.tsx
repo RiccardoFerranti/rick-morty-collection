@@ -9,11 +9,11 @@ import Layout from '../Layout/Layout';
 const AppRoutes: FC = () => (
   <Layout>
     <Routes>
-      <Route path="/rick-morty-collection" element={<Listing />} />
+      <Route path="/" element={<Listing />} />
       {/* <Route path='/' element={<Navigate replace to='/rick-morty-collection'/>} /> */}
-      <Route path="rick-morty-collection/character/:id" element={<Details />} />
-      <Route path="rick-morty-collection/episode/:id" element={<Details />} />
-      <Route path="rick-morty-collection/location/:id" element={<Details />} />
+      <Route path="/character/:id" element={<Details />} />
+      <Route path="/episode/:id" element={<Details />} />
+      <Route path="/location/:id" element={<Details />} />
       <Route path='/404' element={<NotFound/>} />
       <Route path='*' element={<Navigate replace to='/404'/>} />
     </Routes>
