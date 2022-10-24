@@ -10,7 +10,6 @@ const AppRoutes: FC = () => (
   <Layout>
     <Routes>
       <Route path="/rick-morty-collection" element={<Listing />} />
-      <Route path='/' element={<Navigate replace to='/rick-morty-collection'/>} />
       <Route path="rick-morty-collection/character/:id" element={<Details />} />
       <Route path="rick-morty-collection/episode/:id" element={<Details />} />
       <Route path="rick-morty-collection/location/:id" element={<Details />} />
