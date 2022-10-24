@@ -1,4 +1,5 @@
 {
+  "homepage": "https://riccardoferranti.github.io/rick-morty-collection/",
   "name": "rick-morty-collection",
   "version": "1.0.0",
   "private": true,
@@ -60,6 +61,7 @@
     "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.26",
     "eslint-config-prettier": "^8.5.0",
+    "gh-pages": "^4.0.0",
     "jest-watch-typeahead": "0.6.5",
     "prettier": "^2.7.1",
     "redux-logger": "^3.0.6",
